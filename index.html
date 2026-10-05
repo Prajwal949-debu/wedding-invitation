@@ -1,106 +1,250 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#183b3b">
-  <title>Rahul & Ananya — Wedding Invitation</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rahul & Ananya | Wedding Invitation</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div id="loader" class="loader">
-    <div class="temple-icon">ॐ</div>
-    <p class="eyebrow">A new chapter begins</p>
-    <h1>Rahul <span>&</span> Ananya</h1>
-    <button id="openBtn" class="gold-btn">Tap to Begin</button>
-    <p class="hint">Turn on your sound for the full experience</p>
-  </div>
 
-  <main id="invitation" class="hidden">
-    <button id="soundBtn" class="sound-btn" aria-label="Toggle music">♪</button>
+    <!-- =========================
+         OPENING SCREEN
+    ========================== -->
+    <div id="openingScreen" class="opening-screen">
 
-    <section class="hero reveal">
-      <div class="stars"></div>
-      <div class="moon"></div>
-      <div class="temple-silhouette"></div>
-      <div class="hero-content">
-        <p class="eyebrow">With the blessings of our families</p>
-        <div class="names">
-          <div>Rahul</div>
-          <span>&</span>
-          <div>Ananya</div>
+        <div class="opening-content">
+
+            <div class="temple-icon">🛕</div>
+
+            <p class="small-text">A NEW BEGINNING</p>
+
+            <h1>Rahul</h1>
+
+            <div class="and">&</div>
+
+            <h1>Ananya</h1>
+
+            <p class="invite-text">
+                Together with their families,<br>
+                invite you to celebrate their wedding
+            </p>
+
+            <button id="beginButton" class="begin-button">
+                TAP TO BEGIN
+            </button>
+
         </div>
-        <p class="script">invite you to celebrate their wedding</p>
-        <div class="scroll-cue">↓ <span>Scroll</span></div>
-      </div>
-    </section>
 
-    <section class="paper-section reveal">
-      <p class="eyebrow">Save the date</p>
-      <h2>15 <span>•</span> December <span>•</span> 2026</h2>
-      <p class="body-copy">Tuesday · 10:30 AM</p>
-      <div class="ornament">❦</div>
-      <p class="body-copy">Two hearts, one beautiful journey, and a day we would love to share with you.</p>
-    </section>
+    </div>
 
-    <section class="ocean-section reveal">
-      <div class="wave"></div>
-      <div class="ocean-content">
-        <p class="eyebrow">The wedding ceremony</p>
-        <h2>Under the temple bells</h2>
-        <div class="event-card">
-          <div class="event-icon">🛕</div>
-          <h3>Sri Krishna Temple</h3>
-          <p>Bengaluru, Karnataka</p>
-          <p>10:30 AM onwards</p>
-          <a class="gold-btn small" href="https://www.google.com/maps/search/?api=1&query=Sri+Krishna+Temple+Bengaluru" target="_blank" rel="noopener">View Location</a>
-        </div>
-      </div>
-    </section>
 
-    <section class="beach-section reveal">
-      <div class="sun"></div>
-      <div class="beach-content">
-        <p class="eyebrow">And then, by the sea...</p>
-        <h2>Reception</h2>
-        <div class="event-card light">
-          <div class="event-icon">🌊</div>
-          <h3>Ocean Pearl Beach Resort</h3>
-          <p>Goa</p>
-          <p>16 December 2026 · 7:00 PM</p>
-          <a class="gold-btn small" href="https://www.google.com/maps/search/?api=1&query=Ocean+Pearl+Beach+Resort+Goa" target="_blank" rel="noopener">View Location</a>
-        </div>
-      </div>
-    </section>
+    <!-- =========================
+         MAIN INVITATION
+    ========================== -->
+    <main id="invitation" class="invitation hidden">
 
-    <section class="countdown-section reveal">
-      <p class="eyebrow">Counting every moment</p>
-      <h2>Until we say “I do”</h2>
-      <div id="countdown" class="countdown">
-        <div><strong id="days">00</strong><span>Days</span></div>
-        <div><strong id="hours">00</strong><span>Hours</span></div>
-        <div><strong id="minutes">00</strong><span>Minutes</span></div>
-        <div><strong id="seconds">00</strong><span>Seconds</span></div>
-      </div>
-    </section>
+        <!-- HERO -->
+        <section class="hero">
 
-    <section class="final-section reveal">
-      <p class="eyebrow">Together with our families</p>
-      <h2>We can't wait to celebrate with you.</h2>
-      <p class="body-copy">Your presence will make our special day even more memorable.</p>
-      <a class="gold-btn" href="https://wa.me/919876543210?text=Congratulations%20Rahul%20%26%20Ananya!%20I%20will%20be%20joining%20your%20wedding." target="_blank" rel="noopener">RSVP on WhatsApp</a>
-      <div class="signature">Rahul ♥ Ananya</div>
-    </section>
-  </main>
+            <div class="hero-overlay"></div>
 
-  <audio id="music" loop preload="none">
-    <!-- Replace wedding-music.mp3 with your own royalty-free music file if desired -->
-    <source src="wedding-music.mp3" type="audio/mpeg">
-  </audio>
+            <div class="hero-content">
 
-  <script src="script.js"></script>
+                <p class="pre-title">WE ARE GETTING MARRIED</p>
+
+                <h1>Rahul <span>&</span> Ananya</h1>
+
+                <p class="date">
+                    15 December 2026
+                </p>
+
+                <p class="location">
+                    Bengaluru, Karnataka
+                </p>
+
+                <div class="scroll-down">
+                    ↓
+                    <span>Scroll to explore</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- INVITATION MESSAGE -->
+        <section class="section">
+
+            <p class="section-label">WITH LOVE</p>
+
+            <h2>You're Invited</h2>
+
+            <div class="divider">❈</div>
+
+            <p>
+                With the blessings of our families,
+                we invite you to join us as we begin
+                this beautiful journey together.
+            </p>
+
+            <p>
+                Your presence and blessings will make
+                our special day even more memorable.
+            </p>
+
+        </section>
+
+
+        <!-- WEDDING -->
+        <section class="section wedding-section">
+
+            <p class="section-label">THE WEDDING</p>
+
+            <h2>Wedding Ceremony</h2>
+
+            <div class="event-icon">🛕</div>
+
+            <h3>15 December 2026</h3>
+
+            <p class="event-time">
+                10:30 AM onwards
+            </p>
+
+            <p class="venue">
+                Sri Krishna Temple<br>
+                Bengaluru, Karnataka
+            </p>
+
+            <a
+                class="location-button"
+                href="https://www.google.com/maps/search/?api=1&query=Sri+Krishna+Temple+Bengaluru"
+                target="_blank"
+            >
+                📍 VIEW LOCATION
+            </a>
+
+        </section>
+
+
+        <!-- RECEPTION -->
+        <section class="section reception-section">
+
+            <p class="section-label">CELEBRATION</p>
+
+            <h2>Reception</h2>
+
+            <div class="event-icon">🌊</div>
+
+            <h3>15 December 2026</h3>
+
+            <p class="event-time">
+                7:00 PM onwards
+            </p>
+
+            <p class="venue">
+                Ocean Pearl Beach Resort<br>
+                Goa, India
+            </p>
+
+            <a
+                class="location-button"
+                href="https://www.google.com/maps/search/?api=1&query=Ocean+Pearl+Beach+Resort+Goa"
+                target="_blank"
+            >
+                📍 VIEW LOCATION
+            </a>
+
+        </section>
+
+
+        <!-- COUNTDOWN -->
+        <section class="section countdown-section">
+
+            <p class="section-label">COUNTING THE DAYS</p>
+
+            <h2>Until We Say "I Do"</h2>
+
+            <div class="countdown">
+
+                <div class="count-box">
+                    <span id="days">0</span>
+                    <small>DAYS</small>
+                </div>
+
+                <div class="count-box">
+                    <span id="hours">0</span>
+                    <small>HOURS</small>
+                </div>
+
+                <div class="count-box">
+                    <span id="minutes">0</span>
+                    <small>MINUTES</small>
+                </div>
+
+                <div class="count-box">
+                    <span id="seconds">0</span>
+                    <small>SECONDS</small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RSVP -->
+        <section class="section rsvp-section">
+
+            <div class="heart">♥</div>
+
+            <h2>Will You Join Us?</h2>
+
+            <p>
+                We would love to celebrate this
+                special day with you.
+            </p>
+
+            <a
+                id="rsvpButton"
+                class="rsvp-button"
+                href="#"
+                target="_blank"
+            >
+                ❤️ RSVP ON WHATSAPP
+            </a>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <h2>Rahul & Ananya</h2>
+
+            <p>
+                With love, laughter & happily ever after ♥
+            </p>
+
+            <p class="copyright">
+                Wedding Invitation · 2026
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- MUSIC BUTTON -->
+    <button id="musicButton" class="music-button">
+        🔊
+    </button>
+
+
+    <script src="script.js"></script>
+
 </body>
 </html>
