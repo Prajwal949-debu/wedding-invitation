@@ -1,65 +1,199 @@
-const loader = document.getElementById("loader");
-const invitation = document.getElementById("invitation");
-const openBtn = document.getElementById("openBtn");
-const music = document.getElementById("music");
-const soundBtn = document.getElementById("soundBtn");
+```javascript
+document.addEventListener("DOMContentLoaded", function () {
 
-openBtn.addEventListener("click", async () => {
-  loader.style.transition = "opacity .8s ease, transform .8s ease";
-  loader.style.opacity = "0";
-  loader.style.transform = "scale(1.04)";
-  setTimeout(() => {
-    loader.style.display = "none";
-    invitation.classList.remove("hidden");
-    document.body.style.overflow = "auto";
-    observeReveals();
-  }, 750);
+    /*
+     * ============================
+     * ELEMENTS
+     * ============================
+     */
 
-  try {
-    await music.play();
-    soundBtn.textContent = "♫";
-  } catch (e) {
-    soundBtn.textContent = "♪";
-  }
-});
+    const openingScreen = document.getElementById("openingScreen");
+    const beginButton = document.getElementById("beginButton");
+    const invitation = document.getElementById("invitation");
+    const musicButton = document.getElementById("musicButton");
 
-soundBtn.addEventListener("click", async () => {
-  if (music.paused) {
-    try { await music.play(); } catch (e) {}
-    soundBtn.textContent = "♫";
-  } else {
-    music.pause();
-    soundBtn.textContent = "♪";
-  }
-});
 
-function observeReveals() {
-  const items = document.querySelectorAll(".reveal");
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add("visible");
+    /*
+     * ============================
+     * TAP TO BEGIN
+     * ============================
+     */
+
+    beginButton.addEventListener("click", function () {
+
+        // Hide opening screen
+        openingScreen.classList.add("hide");
+
+        // Show invitation
+        invitation.classList.remove("hidden");
+
+        // Allow page scrolling
+        document.body.style.overflowY = "auto";
+
+        // Scroll to the top
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
     });
-  }, { threshold: 0.15 });
-  items.forEach(item => observer.observe(item));
-}
 
-// Dummy wedding countdown: 15 Dec 2026, 10:30 AM IST
-const weddingDate = new Date("2026-12-15T10:30:00+05:30").getTime();
 
-function updateCountdown() {
-  const diff = weddingDate - Date.now();
-  if (diff <= 0) {
-    ["days","hours","minutes","seconds"].forEach(id => document.getElementById(id).textContent = "00");
-    return;
-  }
-  const days = Math.floor(diff / 86400000);
-  const hours = Math.floor((diff / 3600000) % 24);
-  const minutes = Math.floor((diff / 60000) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-  document.getElementById("days").textContent = String(days).padStart(2,"0");
-  document.getElementById("hours").textContent = String(hours).padStart(2,"0");
-  document.getElementById("minutes").textContent = String(minutes).padStart(2,"0");
-  document.getElementById("seconds").textContent = String(seconds).padStart(2,"0");
-}
-updateCountdown();
-setInterval(updateCountdown, 1000);
+    /*
+     * ============================
+     * COUNTDOWN
+     * ============================
+     */
+
+    // Wedding date
+    const weddingDate = new Date("December 15, 2026 10:30:00").getTime();
+
+
+    function updateCountdown() {
+
+        const now = new Date().getTime();
+
+        const difference = weddingDate - now;
+
+
+        if (difference <= 0) {
+
+            document.getElementById("days").textContent = "0";
+            document.getElementById("hours").textContent = "0";
+            document.getElementById("minutes").textContent = "0";
+            document.getElementById("seconds").textContent = "0";
+
+            return;
+        }
+
+
+        const days = Math.floor(
+            difference / (1000 * 60 * 60 * 24)
+        );
+
+        const hours = Math.floor(
+            (difference / (1000 * 60 * 60)) % 24
+        );
+
+        const minutes = Math.floor(
+            (difference / (1000 * 60)) % 60
+        );
+
+        const seconds = Math.floor(
+            (difference / 1000) % 60
+        );
+
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+
+    }
+
+
+    updateCountdown();
+
+    setInterval(updateCountdown, 1000);
+
+
+    /*
+     * ============================
+     * WHATSAPP RSVP
+     * ============================
+     */
+
+    const rsvpButton = document.getElementById("rsvpButton");
+
+
+    // Dummy WhatsApp number.
+    // Replace this later with your real number.
+    const whatsappNumber = "919876543210";
+
+
+    const message =
+        "Hello Rahul & Ananya! ❤️%0A%0A" +
+        "I would like to RSVP for your wedding.%0A" +
+        "Looking forward to celebrating with you!";
+
+
+    rsvpButton.href =
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        message;
+
+
+    /*
+     * ============================
+     * MUSIC
+     * ============================
+     */
+
+    let audio = null;
+    let musicPlaying = false;
+
+
+    musicButton.addEventListener("click", function () {
+
+        /*
+         * Browser security normally prevents
+         * websites from automatically playing
+         * music before user interaction.
+         *
+         * We therefore create the audio after
+         * the user taps the button.
+         */
+
+        if (!audio) {
+
+            audio = new Audio(
+                "https://cdn.pixabay.com/audio/2022/03/15/audio_8c9e1a1f1d.mp3"
+            );
+
+            audio.loop = true;
+            audio.volume = 0.35;
+
+        }
+
+
+        if (musicPlaying) {
+
+            audio.pause();
+
+            musicPlaying = false;
+
+            musicButton.textContent = "🔊";
+
+        } else {
+
+            audio.play()
+                .then(function () {
+
+                    musicPlaying = true;
+
+                    musicButton.textContent = "🔇";
+
+                })
+                .catch(function () {
+
+                    alert(
+                        "Please tap the music button again to start the music."
+                    );
+
+                });
+
+        }
+
+    });
+
+
+    /*
+     * ============================
+     * INITIAL SCROLL LOCK
+     * ============================
+     */
+
+    document.body.style.overflowY = "hidden";
+
+});
